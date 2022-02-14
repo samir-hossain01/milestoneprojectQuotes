@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quotes</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <header>
+      <h1>Random Quotes</h1>
+      <ul class="headerLi">
+        <li><a href="#" id="BtnTag" class="'filter">Artist</a></li>
+        <li><a href="#" id="BtnTag2">Motivational</a></li>
+      </ul>
+     <a href="#" class="btn" id="load-quote">Show Quote</a>
+    </header>
+    <div class="container"id="container" id="js-scene" >
+      <div class="quote-box"  data-depth="0.70">
+        <p class="quote" >Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.</p>
+        <p class="source">Patrick McKenzie   <span class="citation">Twitter</span>
+          <span class="year">2016</span>
+          </p>
+       <p class="artist" id="">Artist</p>
+        
+      </div>
+    </div>
+    <div class="cursor"><span class="piu " style="color: black; text-align: center;">Quotes</span> </div>
+    <div class="cursor-follower"></div>
+    
+    <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <script src="js/jquery-parallax.js"></script>
+    <script>
+      $( document ).mousemove( function( e ) {
+        $( '#container' ).parallax( -30, e );
+        $( '.cloud1' )	  .parallax( 10	, e );
+        $( '.cloud2' )	  .parallax( 20	, e );
+        $( '.cloud3' )	  .parallax( 30	, e );
+      });
+    </script>
+  <script type="text/javascript">
+  
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+  
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  
+  </script>
+  <script>
+    var cursor = $(".cursor"),
+                follower = $(".cursor-follower"),
+                text = $(".piu");
+
+            var posX = 0,
+                posY = 0,
+                mouseX = 0,
+                mouseY = 0;
+
+            TweenMax.to({}, 0.016, {
+                repeat: -1,
+                onRepeat: function() {
+                    posX += (mouseX - posX) / 9;
+                    posY += (mouseY - posY) / 9;
+
+                    TweenMax.set(follower, {
+                        css: {
+                            left: posX - 20,
+                            top: posY - 20
+                        }
+                    });
+
+                    TweenMax.set(cursor, {
+                        css: {
+                            left: mouseX,
+                            top: mouseY
+                        }
+                    });
+                }
+            });
+
+            $(document).on("mousemove", function(e) {
+                mouseX = e.pageX;
+                mouseY = e.pageY;
+            });
+
+            $(".container").on("mouseenter", function() {
+                cursor.addClass("active");
+                follower.addClass("active");
+                text.addClass("active");
+            });
+
+            $(".container").on("mouseleave", function() {
+                cursor.removeClass("active");
+                follower.removeClass("active");
+                text.removeClass("active");
+            });
+  </script>
+  </body>
+</html>
